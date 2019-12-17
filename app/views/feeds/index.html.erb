@@ -1,0 +1,27 @@
+
+  <header class="header">Catgram</header>
+    <p id="notice"></p>
+  <strong><%= link_to '!!!!!!!!!投稿する!!!!!!!!!', new_feed_path %></strong>
+  <table>
+      <thead>
+        <tr>
+          <th>ユーザー  </th>
+          <th>タイトル  </th>
+          <th>画像  </th>
+          <th>内容  </th>
+        </tr>
+      </thead>
+    <article>
+      <% @feeds.each do |feed| %>
+        <tr>
+          <td><%= feed.user.name %></td>
+          <td><%= feed.title %></td>
+          <td><%= image_tag(feed.image.url) %></td>
+          <td><%= feed.content %></td>
+          <td><%= link_to '詳細', feed %></td>
+          <td><%= link_to '編集', edit_feed_path(feed) %></td>
+          <td><%= link_to '削除', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </article>
+  </table>

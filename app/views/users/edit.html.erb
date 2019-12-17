@@ -1,4 +1,4 @@
-<h1>Sign up</h1>
+<h1>編集</h1>
 
 <%= form_with(model: @user, local: true) do |f| %>
 <% if @user.errors.any? %>
@@ -39,5 +39,5 @@
   <%= f.label :プロフィール画像 %>
   <br>
 
-  <%= f.submit "Create my account" %>
+    <%= f.submit "Edit my account" %>
 <% end %>

@@ -1,0 +1,7 @@
+<% if logged_in? %>
+  <h1>新規投稿</h1>
+  <ul>
+    <%= render 'form', feed: @feed %>
+    <%= link_to '投稿一覧へ', feeds_path %>
+  </ul>
+<% end %>
