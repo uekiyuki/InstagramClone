@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
-  before_action :set_feed, only: [:show, :edit, :update, :destroy]
+  before_action :set_feed, only: [:show, :update, :edit, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @feeds = Feed.all
@@ -66,5 +67,14 @@ class FeedsController < ApplicationController
 
   def feed_params
     params.require(:feed).permit(:image, :image_cache, :title, :content)
+  end
+
+  def correct_user
+    @feed = Feed.find(params[:id])
+    @feed.user_id = current_user.id
+    # belong_toのおかげでnoteオブジェクトからuserオブジェクトへアクセスできる。
+    if @feed.id = current_user.id
+      redirect_to edit_feed_path(@feed)
+    end
   end
 end

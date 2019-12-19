@@ -3,8 +3,13 @@
 <p>名前: <%= @user.name %></p>
 <p>自己紹介: <%= @user.introduce %></p>
 <p>メールアドレス: <%= @user.email %></p>
-<p>プロフィール画像: <%= @user.email %></p>
+<p>プロフィール画像: </p>
+  <%= image_tag @user.image.url %>
 
-binding.irb
-<%= link_to 'プロフィールを編集する', edit_user_path(@user) %> |
+
+
+
+<br>
+
+<%= link_to 'プロフィールを編集する', edit_user_path(@user) %> 
 <%= link_to '投稿一覧へ', feeds_path %>

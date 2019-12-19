@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   # Rails.application.routes.draw do
     root 'feeds#index'
+    # authenticated :user do
     resources :feeds do
       collection do
         post :confirm
       end
     end
+  
+
   
     get 'sessions/new'
     resources :sessions, only: [:new, :create, :show, :destroy]
@@ -14,6 +17,6 @@ Rails.application.routes.draw do
     # get '/users/new(.:format) ',to: 'users#show'
     # get 'users/show', to: 'users#show', as: 'show_user'
 
-  # e
+
 end
 
