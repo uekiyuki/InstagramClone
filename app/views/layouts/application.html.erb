@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Cat</title>
+    <header class="header">Catgram</header>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  
 
   <body>
     <% flash.each do |key, value| %>
@@ -25,7 +24,7 @@
     <%= yield %>
   </body> 
   <footer>
-    <p>運営会社　Dogbook 株式会社</p>
+    <p>運営会社　Cat 株式会社</p>
     <p>© 2015-2016 Copyright Dogs Corp.</p>
   </footer>
 </html>

@@ -6,7 +6,7 @@
   <p>Picture:
   <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
   <%= form.hidden_field :image_cache %></P>
-  <th><%= form.submit "投稿一覧へ", name: "back" %></th>
+  
 <% end %>
 
 <%= form_with(model: @feed, url: feeds_path, local: true) do |form| %>
@@ -15,4 +15,5 @@
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <%= form.submit "投稿する" %>
+  <th><%= form.submit "投稿一覧へ", name: "back" %></th>
 <% end %>
