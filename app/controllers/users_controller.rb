@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :set_blog, only: [:show, :edit, :update]
+  before_action :set_feed, only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
+  
   def show
   end
 
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
                               :image, :image_cache,:password_confirmation,:introduce)
   end
 
-  def set_blog
+  def set_feed
     @user = User.find(params[:id])
   end
   

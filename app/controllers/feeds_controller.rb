@@ -1,13 +1,13 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :update, :edit, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @feeds = Feed.all
   end
 
   def show
-    #binsding.irb
+      @favorite = current_user.favorites.find_by(feed_id: @feed.id)#binsding.irb
   end
 
   def new
@@ -24,6 +24,9 @@ class FeedsController < ApplicationController
   end
 
   def edit
+    if @feed.user_id != current_user.id
+      redirect_to feed_path, notice:"権限がありません"
+    end
   end
 
   def create
@@ -32,6 +35,7 @@ class FeedsController < ApplicationController
       if @feed.save
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render :show, status: :created, location: @feed }
+        ContactMailer.contact_mail(@feed).deliver
       else
         format.html { render :new }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
@@ -69,12 +73,12 @@ class FeedsController < ApplicationController
     params.require(:feed).permit(:image, :image_cache, :title, :content)
   end
 
-  def correct_user
-    @feed = Feed.find(params[:id])
-    @feed.user_id = current_user.id
-    # belong_toのおかげでnoteオブジェクトからuserオブジェクトへアクセスできる。
-    if @feed.id = current_user.id
-      redirect_to edit_feed_path(@feed)
-    end
-  end
+  # def correct_user
+  #   @feed = Feed.find(params[:id])
+  #   @feed.user_id = current_user.id
+  #   # belong_toのおかげでnoteオブジェクトからuserオブジェクトへアクセスできる。
+  #   if @feed.id = current_user.id
+  #     redirect_to edit_feed_path(@feed)
+  #   end
+  # end
 end

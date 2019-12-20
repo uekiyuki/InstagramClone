@@ -1,16 +1,18 @@
 <h1>確認画面</h1>
-<%= form_with(model: @feed, url: feeds_path, local: true) do |form| %>
-  <!-- 確認画面でアップロードした画像を表示させるための記述 -->
-  <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
-  <%= form.hidden_field :image_cache %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :content %>
-  <th><%= form.submit "投稿する" %></th>
-<% end %>
 
 <%= form_with(model:@feed, url:new_feed_path, local:true, method:"get") do |form| %>
+  <p>タイトル:<%= @feed.title %></P>
+  <p>本文:<%= @feed.content %></P>
+  <p>Picture:
+  <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
+  <%= form.hidden_field :image_cache %></P>
+  <th><%= form.submit "投稿一覧へ", name: "back" %></th>
+<% end %>
+
+<%= form_with(model: @feed, url: feeds_path, local: true) do |form| %>
+  <!-- 確認画面でアップロードした画像を表示させるための記述 -->
   <%= form.hidden_field :image_cache %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
-  <th><%= form.submit "投稿一覧へ", name: "back" %></th>
+  <%= form.submit "投稿する" %>
 <% end %>
