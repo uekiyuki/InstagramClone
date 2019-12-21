@@ -8,18 +8,12 @@ Rails.application.routes.draw do
       end
     end
   
-
-  
     get 'sessions/new'
     resources :sessions, only: [:new, :create, :show, :destroy]
     resources :users
-
-    # get '/users/new(.:format) ',to: 'users#show'
-    # get 'users/show', to: 'users#show', as: 'show_user'
     resources :favorites, only: [:create, :destroy]
+    
     get 'favorites/:id', to: 'favorites#index'
-
     mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-
 end
 

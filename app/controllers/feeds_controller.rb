@@ -1,6 +1,5 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :update, :edit, :destroy]
-  # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @feeds = Feed.all
@@ -33,7 +32,7 @@ class FeedsController < ApplicationController
     @feed = current_user.feeds.build(feed_params)
     respond_to do |format|
       if @feed.save
-        format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
+        format.html { redirect_to @feed, notice: 'Pictureを投稿しました！' }
         format.json { render :show, status: :created, location: @feed }
         ContactMailer.contact_mail(@feed).deliver
       else
@@ -46,7 +45,7 @@ class FeedsController < ApplicationController
   def update
     respond_to do |format|
       if @feed.update(feed_params)
-        format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
+        format.html { redirect_to @feed, notice: 'Pictureを編集しました！' }
         format.json { render :show, status: :ok, location: @feed }
       else
         format.html { render :edit }
@@ -58,7 +57,7 @@ class FeedsController < ApplicationController
   def destroy
     @feed.destroy
     respond_to do |format|
-      format.html { redirect_to feeds_url, notice: 'Feed was successfully destroyed.' }
+      format.html { redirect_to feeds_url, notice: 'Pictureを削除しました' }
       format.json { head :no_content }
     end
   end
@@ -72,13 +71,4 @@ class FeedsController < ApplicationController
   def feed_params
     params.require(:feed).permit(:image, :image_cache, :title, :content)
   end
-
-  # def correct_user
-  #   @feed = Feed.find(params[:id])
-  #   @feed.user_id = current_user.id
-  #   # belong_toのおかげでnoteオブジェクトからuserオブジェクトへアクセスできる。
-  #   if @feed.id = current_user.id
-  #     redirect_to edit_feed_path(@feed)
-  #   end
-  # end
 end
