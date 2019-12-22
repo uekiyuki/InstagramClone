@@ -25,7 +25,6 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'letter_opener_web'
 end
 
 group :test do
@@ -39,3 +38,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'faker'
+gem 'letter_opener_web'
