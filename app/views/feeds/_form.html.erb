@@ -21,7 +21,7 @@
     </div>
 
     <div class="blog">
-      <%= form.label :Picture %>
+      <%= form.label :"Picture(image)" %>
       <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
       <%= form.file_field :image %>
     </div>

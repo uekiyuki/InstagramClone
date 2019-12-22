@@ -1,48 +1,56 @@
-<h1>Sign up</h1>
+  <% if logged_in? %>
+    <h1>編集</h1>
+  <% else %>
+    <h1>アカウント作成</h1>
+  <% end %>
 
 <%= form_with(model: @user, local: true) do |f| %>
-<% if @user.errors.any? %>
-  <div id="error_explanation">
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
-    <ul>
+      <ul>
     <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
+        <li><%= message %></li>
+  <% end %>
+      </ul>
+    </div>
 <% end %>
 
-  <div class = "profile">
-  <%= f.label :name %>
-  <br>
-  <%= f.text_field :name %>
-  <br>
+    <div class = "profile">
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name %>
+    <br>
 
-  <%= f.label :email %>
-  <br>
-  <%= f.email_field :email %>
-  <br>
+    <%= f.label :email %>
+    <br>
+    <%= f.email_field :email %>
+    <br>
 
-  <%= f.label :introduce%>
-  <br>
-  <%= f.text_field :introduce %>
-  <br>
+    <%= f.label :introduce%>
+    <br>
+    <%= f.text_field :introduce %>
+    <br>
 
-  <%= f.label :password %>
-  <br>
-  <%= f.password_field :password %>
-  <br>
+    <%= f.label :password %>
+    <br>
+    <%= f.password_field :password %>
+    <br>
 
-  <%= f.label :password_confirmation %>
-  <br>
-  <%= f.password_field :password_confirmation %>
-  <br>
+    <%= f.label :password_confirmation %>
+    <br>
+    <%= f.password_field :password_confirmation %>
+    <br>
 
-  <%= f.label :プロフィール画像 %>
-  <br>
-  <%= f.file_field :image %>
-  <br>
-
-  <%= f.submit "アカウントを作成する" %>
-  </div>
+    <%= f.label :"プロフィール画像(Image)" %>
+    <br>
+    <%= f.file_field :image %>
+    <br>
+  
+  <% if logged_in? %>
+    <%= f.submit "プロフィールを編集する" %>
+  <% else %>
+    <%= f.submit "アカウントを作成する" %>
+  <% end %>
+    <br>
 <% end %>
